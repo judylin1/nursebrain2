@@ -1,0 +1,78 @@
+extends ../layout
+
+block content
+  body#bg
+  nav
+    h1.nav Dose Calculator
+    a.nav(href='/') Home
+    |  |  
+    a.nav(href='/drugsearch') Drug Search
+    |  |  
+    a.nav(href='/goodrx') GoodRx
+    
+  div.calcdiv
+    a.dosecalc(href='/ivdrip') IV Drips
+
+  div.tableblock
+    h1 Weight Based Calculator - mg/kg
+    form(action='/dosecalc' method='post')
+      div
+        table
+          tr
+            td Dose ordered
+            td
+              input#smallbox(type='number' name="wtordered" placeholder="mg" value= wtordered)
+          tr
+            td Weight
+            td
+              input#smallerbox(type='number' name='weight' value= weight)
+              select(name='wtunit' value= wtunit)
+                option(value="kg") kg
+                option(value="lb") lbs
+          tr
+            td
+              input(type='submit' name='wtcalc' value="Calculate")
+            td
+              p #{final}
+
+  div.tableblock
+    h1 Dosage Calculator - Liquids/IV
+    form(action='/dosecalc2' method='post')
+      div
+        table
+          tr
+            td Dose ordered
+            td
+              input#smallbox(type='number' name='liqordered' value= liqordered)
+          tr
+            td Dose available
+            td
+              input#smallbox(type='number' name='liqavailable' value= liqavailable)
+          tr
+            td Volume available
+            td
+              input#smallbox(type='number' name='volume' value= volume)
+          tr
+            td
+              input(type='submit' name='liqcalc' value='Calculate')
+            td
+              p #{liqfinal} 
+      
+  div.tableblock
+    h1 Dosage Calculator - Solids
+    form(action='/dosecalc3' method='post')
+      div
+        table
+          tr
+            td Dose ordered 
+            td
+              input#smallbox(type='number' name='solidord' value= solidord)
+          tr
+            td Dose available  
+            td
+              input#smallbox(type='number' name='solidavail' value= solidavail)
+          tr
+            td#center
+              input(name='solidcalc' type='submit' value='Calculate')
+            td#center
+              p #{solidfinal} 
