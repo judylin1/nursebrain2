@@ -125,14 +125,11 @@ router.get('/goodrx', function(req, res, next) {
 });
 
 router.post('/goodrx', function(req, res, next) {
-  var myHash = function(payload) {
   var search = req.body.search;
   var upfirst = search.charAt(0).toUpperCase() + search.slice(1);
   var payload = 'name=' + upfirst + '&api_key=' + process.env.GOODRX_API
-  var base = crypto.createHmac('SHA256', process.env.GOODRX_SECRET_KEY).update(payload).digest('base64');
-  return base
-  }
-  var sig = base.replace(/\//g, '_').replace(/\+/g, '_');
+  var base64 = crypto.createHmac('SHA256', process.env.GOODRX_SECRET_KEY).update(payload).digest('base64');
+  var sig = base64.replace(/\//g, '_').replace(/\+/g, '_');
   if (search.length = 0) {
     var result = "Please enter a drug."
   }
@@ -159,10 +156,4 @@ router.get('/drugsearch', function(req, res, next) {
   res.render('drugsearch/drugsearch');
 });
 
-// module.exports = router;
-
-module.exports = {
-  ...
-  myHash: myHash,
-  ...
-};
+module.exports = router;
