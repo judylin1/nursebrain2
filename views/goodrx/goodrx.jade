@@ -2,12 +2,45 @@ extends ../layout
 
 block content
   body#bg
-  nav
-    h1.nav GoodRx
-    a.nav(href='/') Home
-    |  |  
-    a.nav(href='/calc') Calculations
-    |  |  
-    a.nav(href='/drugsearch') Drug Search
+    nav
+      h1.nav GoodRx
+      a.nav(href='/') Home
+      |  |  
+      a.nav(href='/calc') Calculations
+      |  |  
+      a.nav(href='/drugsearch') Drug Search
 
-  h1 hello
+    h1.goodrx Compare Drug Prices
+    form.rxform(action='/goodrx' method='post')
+      p
+        input(type='text' id='search' name='search')
+      p
+        input.searchbut(type='submit' name='dsearch' value="Search")
+
+  if response 
+    div
+      table.rxtable
+        thead
+          tr
+            th Drug
+            th Pharmacy
+            th Price
+        tbody
+          tr
+            td= response.data.brand
+            td= response.data.price_detail.pharmacy[0]
+            td $
+              | 
+              = response.data.price_detail.price[0].toFixed(2)
+          tr
+            td
+            td= response.data.price_detail.pharmacy[1]
+            td $
+              | 
+              = response.data.price_detail.price[1].toFixed(2)
+          tr
+            td
+            td= response.data.price_detail.pharmacy[2]
+            td $
+              | 
+              = response.data.price_detail.price[2].toFixed(2)

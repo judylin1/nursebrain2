@@ -10,11 +10,9 @@ block content
     |  |  
     a.nav(href='/goodrx') GoodRx
 
-  h1 Drug Search
-  form(action='/drugsearch' method='post')
+  h1.rxsearch Drug Search
+  form.rxsform(action='/drugsearch' method='post')
     p
       input(type='text' id='search' name='search')
     p
-      input(type='submit' name='dsearch' value="Search")
-    p Indications And Usage: 
-    'https://api.fda.gov/drug/label.json?search=' + search
+      input.searchbut(type='submit' name='dsearch' value="Search")
