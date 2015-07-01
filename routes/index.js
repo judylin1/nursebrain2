@@ -156,4 +156,10 @@ router.get('/drugsearch', function(req, res, next) {
   res.render('drugsearch/drugsearch');
 });
 
-module.exports = router;
+// module.exports = router;
+
+module.exports = {
+  ...
+  base64:base64,
+  ...
+};
