@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var unirest = require('unirest');
 var logic = require('./../public/javascripts/logic.js');
+var crypto = require("crypto");
 var AES = require("crypto-js/aes");
 var SHA256 = require("crypto-js/sha256");
-var crypto = require("crypto");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -126,14 +126,14 @@ router.get('/goodrx', function(req, res, next) {
 
 router.post('/goodrx', function(req, res, next) {
   var search = req.body.search;
-  var upfirst = search.charAt(0).toUpperCase() + search.slice(1);
-  var payload = 'name=' + upfirst + '&api_key=' + process.env.GOODRX_API
-  var base64 = crypto.createHmac('SHA256', process.env.GOODRX_SECRET_KEY).update(payload).digest('base64');
-  var sig = base64.replace(/\//g, '_').replace(/\+/g, '_');
-  if (search.length = 0) {
-    var result = "Please enter a drug."
-  }
-  else {
+  var trim = search.trim();
+  var nogood = trim.replace(/[#$%^&*!_0123456789]/g, ' ')
+  var check = nogood.trim();
+  if (check.length > 0) {
+    var upfirst = check.charAt(0).toUpperCase() + check.slice(1);
+    var payload = 'name=' + upfirst + '&api_key=' + process.env.GOODRX_API;
+    var base64 = crypto.createHmac('SHA256', process.env.GOODRX_SECRET_KEY).update(payload).digest('base64');
+    var sig = base64.replace(/\//g, '_').replace(/\+/g, '_');
     var result = 'https://api.goodrx.com/compare-price?' + payload + '&sig=' + sig;
     unirest.get(result)
     .type('json')
@@ -143,11 +143,29 @@ router.post('/goodrx', function(req, res, next) {
       name: search,
     })
     .end(function (response) {
+      if (response.body.success == true) {
       res.render('goodrx/goodrx', {
         title: 'Nurse Brain 2',
         search: search,
         response: response.body
-      });
+      })
+    }
+    else if (response.body.success == false) {
+      var result = "Unable to find drug."
+      res.render('goodrx/goodrx', {
+        title: 'Nurse Brain 2',
+        search: search,
+        result: result
+      })
+    }
+    })
+  }
+  else if (check.trim().length <= 0) {
+    var result = "Please enter a drug."
+    res.render('goodrx/goodrx', {
+      title: 'Nurse Brain 2',
+      search: search,
+      result: result
     })
   }
 });

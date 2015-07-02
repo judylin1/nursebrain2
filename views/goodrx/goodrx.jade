@@ -18,29 +18,28 @@ block content
         input.searchbut(type='submit' name='dsearch' value="Search")
 
   if response 
-    div
-      table.rxtable
-        thead
-          tr
-            th Drug
-            th Pharmacy
-            th Price
-        tbody
-          tr
-            td= response.data.brand
-            td= response.data.price_detail.pharmacy[0]
-            td $
-              | 
-              = response.data.price_detail.price[0].toFixed(2)
-          tr
-            td
-            td= response.data.price_detail.pharmacy[1]
-            td $
-              | 
-              = response.data.price_detail.price[1].toFixed(2)
-          tr
-            td
-            td= response.data.price_detail.pharmacy[2]
-            td $
-              | 
-              = response.data.price_detail.price[2].toFixed(2)
+    h2
+      span= response.data.brand[0] + " " + response.data.dosage + " " + response.data.quantity + " " + response.data.form + "s"
+    table.rxtable
+      thead
+        tr
+          th Pharmacy
+          th Price
+      tbody
+        tr
+          td= response.data.price_detail.pharmacy[0]
+          td $
+            | 
+            = response.data.price_detail.price[0].toFixed(2)
+        tr
+          td= response.data.price_detail.pharmacy[1]
+          td $
+            | 
+            = response.data.price_detail.price[1].toFixed(2)
+        tr
+          td= response.data.price_detail.pharmacy[2]
+          td $
+            | 
+            = response.data.price_detail.price[2].toFixed(2)
+          
+  p.norx #{result}

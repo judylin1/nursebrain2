@@ -195,7 +195,7 @@ table {
 
 .rxtable {
   margin-left: 50%;
-  margin-top: -6%;
+  margin-top: 2%;
   border: 2px solid black;
   border-collapse: collapse;
   font-size: 24px;
@@ -215,4 +215,16 @@ table {
 
 .rxtable tr:nth-child(odd) {
   background-color: #E8E8E8;
+}
+
+.norx {
+  font-size: 24px;
+  margin-left: 60%;
+  color: red;
+  margin-top: -5%;
+}
+
+h2 {
+  margin-left: 50%;
+  margin-top: -5%;
 }
