@@ -13,6 +13,28 @@ block content
   h1.rxsearch Drug Search
   form.rxsform(action='/drugsearch' method='post')
     p
-      input(type='text' id='search' name='search')
+      input(type='text' id='drugsearch' name='drugsearch' value=drugsearch)
     p
       input.searchbut(type='submit' name='dsearch' value="Search")
+      
+  if response
+    h2
+      span= response.results[0].patient.drug[0].openfda.brand_name[0]
+    table.medsearch
+      tr
+        th Primary Reaction
+        td= response.results[0].patient.reaction[0].reactionmeddrapt
+      tr
+        th Route
+        td= response.results[0].patient.drug[0].openfda.route[0]
+      tr
+        th Generic Name
+        td= response.results[0].patient.drug[0].openfda.generic_name[0]
+      tr
+        th Manufacturer
+        td= response.results[0].patient.drug[0].openfda.manufacturer_name[0]
+        
+  p #{result}
+
+          
+    

@@ -174,4 +174,46 @@ router.get('/drugsearch', function(req, res, next) {
   res.render('drugsearch/drugsearch');
 });
 
+router.post('/drugsearch', function(req, res, next) {
+  var drugsearch = req.body.drugsearch;
+  var dtrim = drugsearch.trim();
+  var replace = dtrim.replace(/[#$%^&*!_0123456789]/g, ' ')
+  var sendrx = replace.trim();
+  if (sendrx.length > 0) {
+    var upfirst = sendrx.charAt(0).toLowerCase() + sendrx.slice(1);
+    var rxsearch = 'https://api.fda.gov/drug/event.json?api_key=' + process.env.OPENFDA_API + '&search=' + sendrx;
+    unirest.get(rxsearch)
+    .type('json')
+    .send({
+      api_key: process.env.OPENFDA_API,
+      search: drugsearch
+    })
+    .end(function (response) {
+      if (response.body.hasOwnProperty("meta")) {
+      res.render('drugsearch/drugsearch', {
+        title: 'Nurse Brain 2',
+        drugsearch: req.body.drugsearch,
+        response: response.body
+      })
+      }
+      else if (response.body.hasOwnProperty("error")) {
+        var result = "Unable to find drug."
+        res.render('drugsearch/drugsearch', {
+          title: 'Nurse Brain 2',
+          drugsearch: req.body.drugsearch,
+          result: result
+        })
+      }
+    })
+  }
+  else if (sendrx.trim().length <= 0) {
+    var result = "Please enter a drug."
+    res.render('drugsearch/drugsearch', {
+      title: 'Nurse Brain 2',
+      drugsearch: req.body.drugsearch,
+      result: result
+    })
+  }
+});
+
 module.exports = router;
