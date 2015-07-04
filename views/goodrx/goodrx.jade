@@ -1,45 +1,46 @@
 extends ../layout
 
 block content
-  body#bg
-    nav
-      h1.nav GoodRx
-      a.nav(href='/') Home
-      |  |  
-      a.nav(href='/calc') Calculations
-      |  |  
-      a.nav(href='/drugsearch') Drug Search
+  include ../partials/nav
 
-    h1.goodrx Compare Drug Prices
-    form.rxform(action='/goodrx' method='post')
+  div.row
+    div.six.columns
+      h5.grey Compare Drug Prices
+    div.six.columns
       p
-        input(type='text' id='search' name='search' value=search)
-      p
-        input.searchbut(type='submit' name='dsearch' value="Search")
-
-  if response 
-    h2
-      span= response.data.brand[0] + " " + response.data.dosage + " " + response.data.quantity + " " + response.data.form + "s"
-    table.rxtable
-      thead
-        tr
-          th Pharmacy
-          th Price
-      tbody
-        tr
-          td= response.data.price_detail.pharmacy[0]
-          td $
-            | 
-            = response.data.price_detail.price[0].toFixed(2)
-        tr
-          td= response.data.price_detail.pharmacy[1]
-          td $
-            | 
-            = response.data.price_detail.price[1].toFixed(2)
-        tr
-          td= response.data.price_detail.pharmacy[2]
-          td $
-            | 
-            = response.data.price_detail.price[2].toFixed(2)
-          
-  p.norx #{result}
+  div.row
+    div.two.columns
+      p 
+    div.three.columns
+      form(action='/goodrx' method='post')
+        p
+          input(type='text' id='search' name='search' value=search)
+        p
+          input(type='submit' name='dsearch' value="Search")
+    div.six.columns
+      if response 
+        h5.grey
+          span= response.data.brand[0].charAt(0).toUpperCase() + response.data.brand[0].slice(1) + " " + response.data.dosage + " " + response.data.quantity + " " + response.data.form + "s"
+        table
+          thead
+            tr
+              th Pharmacy
+              th Price
+          tbody
+            tr
+              td= response.data.price_detail.pharmacy[0]
+              td $
+                | 
+                = response.data.price_detail.price[0].toFixed(2)
+            tr
+              td= response.data.price_detail.pharmacy[1]
+              td $
+                | 
+                = response.data.price_detail.price[1].toFixed(2)
+            tr
+              td= response.data.price_detail.pharmacy[2]
+              td $
+                | 
+                = response.data.price_detail.price[2].toFixed(2)
+            
+      p.unfound #{result}

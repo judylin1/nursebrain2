@@ -1,27 +1,19 @@
 extends ../layout
 
 block content
-  body#bg
-  nav
-    h1.nav IV Drip Calculator
-    a.nav(href='/') Home
-    |  |  
-    a.nav(href='/drugsearch') Drug Search
-    |  |  
-    a.nav(href='/goodrx') GoodRx
-    
-  div.calcdiv
-    a.dosecalc(href='/dosecalc') Dose Calculator
-
-  div.tableblock
-    h1.centertext IV Rate (mL/hr)
-    form(action='/ivdrip' method='post')
-      table.tableside
-        tbody
+  include ../partials/nav
+  
+  div.row
+    div.five.columns
+      p
+    div.five.columns
+      h5.grey IV Rate (mL/hr)
+      form(action='/ivdrip' method='post')
+        table
           tr
             td Time in Hours
             td
-              input(type='radio' checked name='hours')
+              input(type='radio' name='hours')
           tr
             td Time in Minutes
             td
@@ -33,27 +25,30 @@ block content
           tr
             td Volume mL
             td
-              input#smallbox(type='number' name='ivvolume' value= ivvolume)
+              input(type='number' name='ivvolume' value= ivvolume)
           tr
             td
               input(type='submit' value='Calculate' name='Calculate')
             td
-              p #{final}
+              p.result #{final}
 
-  div.tableblock
-    h1.centertext IV Infusion Time
-    form(action='/ivdrip2' method='post')
-      table.tableside
-        tr
-          td enter volume
-          td
-            input#smallbox(type='number' name='ivvol' value= ivvol)
-        tr
-          td enter ml/hr
-          td
-            input#smallbox(type='number' name='ivrate' value= ivrate)
-        tr
-          td
-            input(type='submit' value='Calculate')
-          td
-            p #{ivans}
+  div.row
+    div.five.columns
+      p
+    div.five.columns
+      h5.grey IV Infusion Time
+      form(action='/ivdrip2' method='post')
+        table
+          tr
+            td enter volume
+            td
+              input#smallbox(type='number' name='ivvol' value= ivvol)
+          tr
+            td enter ml/hr
+            td
+              input#smallbox(type='number' name='ivrate' value= ivrate)
+          tr
+            td
+              input(type='submit' value='Calculate')
+            td
+              p.result #{ivans}

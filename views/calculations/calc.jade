@@ -1,15 +1,18 @@
 extends ../layout
 
 block content
-  body#sectier
-  nav
-    h1.nav Calculations
-    a.nav(href='/') Home
-    |  |  
-    a.nav(href='/drugsearch') Drug Search
-    |  |  
-    a.nav(href='/goodrx') GoodRx
+  include ../partials/nav
   
-  a#calpg1(href='/ivdrip') IV Drips
-  |  
-  a#calpg2(href='/dosecalc') Dose Calculations
+  div.row
+    #center.six.columns
+      a.hover(href='/ivdrip') IV Drip Calculators
+      div.show.on.hover 
+        ul
+          li.grey Calculate IV Rates
+          li.grey IV Infusion Times
+    #center.six.columns
+      a.hover(href='/dosecalc') Dose Calculators
+      div.show.on.hover 
+        ul
+          li.grey Weight Based Calculator
+          li.grey Liquids/Solids Dosage Calculators

@@ -1,40 +1,41 @@
 extends ../layout
 
 block content
-  body#bg
-  nav
-    h1.nav Drug Search
-    a.nav(href='/') Home
-    |  |  
-    a.nav(href='/calc') Calculations
-    |  |  
-    a.nav(href='/goodrx') GoodRx
+  include ../partials/nav
 
-  h1.rxsearch Drug Search
-  form.rxsform(action='/drugsearch' method='post')
-    p
-      input(type='text' id='drugsearch' name='drugsearch' value=drugsearch)
-    p
-      input.searchbut(type='submit' name='dsearch' value="Search")
-      
-  if response
-    h2
-      span= response.results[0].patient.drug[0].openfda.brand_name[0]
-    table.medsearch
-      tr
-        th Primary Reaction
-        td= response.results[0].patient.reaction[0].reactionmeddrapt
-      tr
-        th Route
-        td= response.results[0].patient.drug[0].openfda.route[0]
-      tr
-        th Generic Name
-        td= response.results[0].patient.drug[0].openfda.generic_name[0]
-      tr
-        th Manufacturer
-        td= response.results[0].patient.drug[0].openfda.manufacturer_name[0]
-        
-  p #{result}
+  div.row
+    div.six.columns
+      h5.grey Drug Search
+    div.six.columns
+      p
+  div.row
+    div.two.columns
+      p
+    div.three.columns
+      form(action='/drugsearch' method='post')
+        p
+          input(type='text' id='drugsearch' name='drugsearch' value=drugsearch)
+        p
+          input(type='submit' name='dsearch' value="Search")
+    div.six.columns  
+      if response
+        h5.grey
+          span= response.results[0].patient.drug[0].openfda.brand_name[0]
+        table
+          tr
+            th Primary Reaction
+            td= response.results[0].patient.reaction[0].reactionmeddrapt
+          tr
+            th Route
+            td= response.results[0].patient.drug[0].openfda.route[0].toLowerCase()
+          tr
+            th Generic Name
+            td= response.results[0].patient.drug[0].openfda.generic_name[0].toLowerCase()
+          tr
+            th Manufacturer
+            td= response.results[0].patient.drug[0].openfda.manufacturer_name[0]
+            
+      p.unfound #{result}
 
           
     

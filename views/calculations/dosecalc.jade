@@ -1,31 +1,23 @@
 extends ../layout
 
 block content
-  body#bg
-  nav
-    h1.nav Dose Calculator
-    a.nav(href='/') Home
-    |  |  
-    a.nav(href='/drugsearch') Drug Search
-    |  |  
-    a.nav(href='/goodrx') GoodRx
-    
-  div.calcdiv
-    a.dosecalc(href='/ivdrip') IV Drips
+  include ../partials/nav
 
-  div.tableblock
-    h3 Weight Based Calculator - mg/kg
-    form(action='/dosecalc' method='post')
-      div
+  div.row
+    div.one.column
+      p
+    div.five.columns
+      h5.grey Weight Based Calculator - mg/kg
+      form(action='/dosecalc' method='post')
         table
           tr
             td Dose ordered
             td
-              input#smallbox(type='number' name="wtordered" placeholder="mg" value= wtordered)
+              input(type='number' name="wtordered" placeholder="mg" value= wtordered)
           tr
             td Weight
             td
-              input#smallerbox(type='number' name='weight' value= weight)
+              input(type='number' name='weight' value= weight)
               select(name='wtunit' value= wtunit)
                 option(value="kg") kg
                 option(value="lb") lbs
@@ -33,46 +25,47 @@ block content
             td
               input(type='submit' name='wtcalc' value="Calculate")
             td
-              p #{final}
+              p.result #{final}
 
-  div.tableblock
-    h3 Dosage Calculator - Liquids/IV
-    form(action='/dosecalc2' method='post')
-      div
+    div.five.columns
+      h5.grey Dosage Calculator - Liquids/IV
+      form(action='/dosecalc2' method='post')
         table
           tr
             td Dose ordered
             td
-              input#smallbox(type='number' name='liqordered' value= liqordered)
+              input(type='number' name='liqordered' value= liqordered)
           tr
             td Dose available
             td
-              input#smallbox(type='number' name='liqavailable' value= liqavailable)
+              input(type='number' name='liqavailable' value= liqavailable)
           tr
             td Volume available
             td
-              input#smallbox(type='number' name='volume' value= volume)
+              input(type='number' name='volume' value= volume)
           tr
             td
               input(type='submit' name='liqcalc' value='Calculate')
             td
-              p #{liqfinal} 
+              p.result #{liqfinal} 
       
-  div.tableblock
-    h3 Dosage Calculator - Solids
-    form(action='/dosecalc3' method='post')
-      div
+  div.row
+    div.six.columns
+      p
+    div.five.columns
+      h5.grey Dosage Calculator - Solids
+      form(action='/dosecalc3' method='post')
         table
           tr
             td Dose ordered 
             td
-              input#smallbox(type='number' name='solidord' value= solidord)
+              input(type='number' name='solidord' value= solidord)
           tr
             td Dose available  
             td
-              input#smallbox(type='number' name='solidavail' value= solidavail)
+              input(type='number' name='solidavail' value= solidavail)
           tr
-            td#center
+            td
               input(name='solidcalc' type='submit' value='Calculate')
-            td#center
-              p #{solidfinal} 
+            td
+              p.result #{solidfinal} 
