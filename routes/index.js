@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var unirest = require('unirest');
-var logic = require('./../public/javascripts/logic.js');
 var crypto = require("crypto");
 var AES = require("crypto-js/aes");
 var SHA256 = require("crypto-js/sha256");
