@@ -2,7 +2,7 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .container {
 margin-top: 50px;
-  }
+}
 
 .column,
 .columns {
@@ -315,9 +315,6 @@ body{
   width: 100%;
   min-height: 680px;
   height: 780px;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
 }
 
 header {
@@ -394,4 +391,15 @@ table td {
   color: grey;
   font-size: 24px;
   font-weight: bold;
+}
+
+.bigger {
+  font-size: 20px;
+  color: grey;
+  margin-top: 7%;
+}
+
+.disclaimer {
+  font-size: 10px;
+  margin-top: 33%;
 }

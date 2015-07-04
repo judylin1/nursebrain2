@@ -1,14 +1,12 @@
 extends layout
 
 block content
-  div#homeimg
-    img(src='http://i58.tinypic.com/29dzk7s.jpg' alt='NB2 Logo')
+  include partials/nav
   
-  div  
-    a(href='/calc' id='maincalc') Calculations
-  div  
-    a(href='/goodrx' id='vertright') GoodRx
-  div  
-    a(href='/drugsearch' id='vertleft') Drug Search
-  div  
-    p.med Nurse Brain 2 does not provide medical advice, diagnosis or treatment.
+  div.row
+    div.five.columns
+      p
+    div.six.columns
+      p.bigger Welcome to Nurse Brain 2, an all-inclusive app designed for nursing professionals. Here you'll be able to find the primary reaction to medications as reported to the FDA, compare medication prices between popular pharmacy chains in the nation, and helpful calculators to find the proper doses on the fly.
+      p.bigger This app is currently being used at two hospital emergency rooms in two states. To date, it has not caused death or serious injury.
+      p.disclaimer While every effort is made to return correct doses and drug information, this app is not a substitute for common sense and does not provide medical advice, diagnosis, or treatment.
