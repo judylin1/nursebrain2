@@ -85,10 +85,10 @@ router.post('/ivdrip', function(req, res, next) {
   var hours = req.body.hours;
   var minutes = req.body.minutes;
   if (hours && ivtime > 0) {
-    var final = (ivvolume/ivtime).toFixed(2) + ' hr/min';
+    var final = (ivvolume/ivtime).toFixed(2) + ' ml/hr';
   }
   else if (minutes && ivtime > 0) {
-    var final = (ivvolume/(ivtime/60)).toFixed(2) + ' hr/min';
+    var final = (ivvolume/(ivtime/60)).toFixed(2) + ' ml/hr';
   }
   else {
     var final = "Check numbers."
