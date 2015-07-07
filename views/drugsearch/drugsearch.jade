@@ -27,13 +27,13 @@ block content
             td= response.results[0].patient.reaction[0].reactionmeddrapt
           tr
             th Route
-            td= response.results[0].patient.drug[2].openfda.route[0].toLowerCase()
+            td= response.results[0].patient.drug[1].openfda.route[0].toLowerCase()
           tr
             th Generic Name
-            td= response.results[0].patient.drug[2].openfda.generic_name[0].toLowerCase()
+            td= response.results[0].patient.drug[1].openfda.generic_name[0].toLowerCase()
           tr
             th Manufacturer
-            td= response.results[0].patient.drug[2].openfda.manufacturer_name[0]
+            td= response.results[0].patient.drug[1].openfda.manufacturer_name[0]
             
       p.unfound #{result}
 
