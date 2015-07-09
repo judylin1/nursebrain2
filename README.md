@@ -16,3 +16,6 @@ The resources used to create this app were:
 - GoodRx API
 - FDA API
 - Twitter Typeahead (includes most frequently prescribed medications)
+
+Known errors:
+- The FDA API occasionally returns incorrect drug information. This is a mistake on the FDA's API. You'd think of all people though, they would get their med info right.
