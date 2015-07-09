@@ -15,3 +15,4 @@ The resources used to create this app were:
 - Unirest
 - GoodRx API
 - FDA API
+- Twitter Typeahead (includes most frequently prescribed medications)

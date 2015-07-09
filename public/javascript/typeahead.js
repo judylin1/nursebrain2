@@ -193,6 +193,14 @@ var drugs = new Bloodhound({
     { text: 'Onglyza' },
     { text: 'Pioglitazone' },
     { text: 'Repaglinide' },
+    { text: 'Ambien' },
+    { text: 'Valium' },
+    { text: 'Toradol' },
+    { text: 'Azithromycin' },
+    { text: 'Amoxicillin' },
+    { text: 'Prilosec' },
+    { text: 'Omeprazole' },
+    { text: 'Zocor' }
   ]
 });
 

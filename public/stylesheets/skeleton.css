@@ -387,6 +387,11 @@ table td {
   color: grey;
 }
 
+.greysearch {
+  color: grey;
+  margin-left: 20%;
+}
+
 .unfound {
   color: grey;
   font-size: 24px;

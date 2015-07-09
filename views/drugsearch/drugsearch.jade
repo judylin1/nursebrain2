@@ -8,7 +8,7 @@ block content
 
   div.row
     div.six.columns
-      h5.grey Drug Search
+      h5.greysearch Drug Search
     div.six.columns
       p
   div.row
@@ -17,8 +17,7 @@ block content
     div.three.columns
       form(action='/drugsearch' method='post')
         p
-          input(type='text' id='drugsearch' name='drugsearch' value=drugsearch)
-        p
+          input(type='text' class='typeahead' id='drugsearch' name='drugsearch' value=drugsearch)
           input(type='submit' name='dsearch' value="Search")
     div.six.columns  
       if response
