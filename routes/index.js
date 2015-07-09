@@ -203,7 +203,14 @@ router.post('/drugsearch', function(req, res, next) {
           result: result
         })
       }
-    })
+      else {
+        var result = "Unable to find drug."
+        res.render('drugsearch/drugsearch', {
+          title: 'Nurse Brain 2',
+          drugsearch: req.body.drugsearch,
+          result: result
+      })
+    }
   }
   else if (sendrx.trim().length <= 3) {
     var result = "Unable to find drug."
