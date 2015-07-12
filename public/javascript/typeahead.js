@@ -11,7 +11,6 @@ var drugs = new Bloodhound({
     { text: 'Cymbalta' },
     { text: 'Copaxone' },
     { text: 'Neulasta' },
-    { text: 'Rituxan' },
     { text: 'Januvia' },
     { text: 'Advair' },
     { text: 'Spiriva' },
@@ -26,8 +25,6 @@ var drugs = new Bloodhound({
     { text: 'Symbicort' },
     { text: 'Sovaldi' },
     { text: 'Novolog' },
-    { text: 'Tecfidera' },
-    { text: 'Suboxone' },
     { text: 'Humalog' },
     { text: 'Xarelto' },
     { text: 'Seroquel' },
@@ -44,7 +41,6 @@ var drugs = new Bloodhound({
     { text: 'Isentress' },
     { text: 'Janumet' },
     { text: 'Renvela' },
-    { text: 'Orencia' },
     { text: 'Dexilant' },
     { text: 'Vesicare' },
     { text: 'Neupogen' },
@@ -179,6 +175,7 @@ drugs.initialize();
 // instantiate the typeahead UI
 $('.typeahead').typeahead(null, {
   displayKey: 'text',
+  //ttAdapter wraps the suggestion engine in an adapter that is compatible with the typeahead jQuery plugin
   source: drugs.ttAdapter()
 });
 });
