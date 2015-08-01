@@ -17,7 +17,7 @@ block content
     div.three.columns
       form(action='/goodrx' method='post')
         p
-          input(type='text' id='search' class='typeahead' name='search' value=search)
+          input.box(type='text' id='search' class='typeahead' name='search' value=search)
           input(type='submit' name='dsearch' value="Search")
     div.six.columns
       if response 
